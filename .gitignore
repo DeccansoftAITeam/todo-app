@@ -1,0 +1,19 @@
+# Python (uv)
+.venv/
+__pycache__/
+*.py[cod]
+
+# Node / Vite
+node_modules/
+dist/
+
+# Env files
+.env*
+
+# Local data
+backend/todo.db
+
+# Claude Code local files
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/worktrees/
