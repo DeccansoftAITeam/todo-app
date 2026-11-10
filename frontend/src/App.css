@@ -1,0 +1,183 @@
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+  text-align: left;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+}
+
+.todo-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field.grow {
+  flex: 1 1 220px;
+}
+
+.field label {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+input[type='text'],
+input[type='date'],
+input[type='search'],
+select {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid #b9b9c3;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  padding: 8px 14px;
+  border: 1px solid #b9b9c3;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary,
+.tabs button.active {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #fff;
+}
+
+.error {
+  flex-basis: 100%;
+  margin: 0;
+  color: #c62828;
+  font-size: 14px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filters input[type='search'] {
+  flex: 1 1 180px;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs button:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.tabs button:last-child {
+  border-radius: 0 6px 6px 0;
+  border-left: 0;
+}
+
+.archived-toggle {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #d4d4dc;
+  border-radius: 8px;
+}
+
+.todo-item .body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.todo-item .title {
+  overflow-wrap: anywhere;
+}
+
+.todo-item.completed .title {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.todo-item.archived {
+  border-style: dashed;
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.tag {
+  padding: 0 8px;
+  border-radius: 10px;
+  background: rgba(128, 128, 128, 0.2);
+}
+
+.priority-high {
+  background: rgba(198, 40, 40, 0.2);
+}
+
+.priority-medium {
+  background: rgba(245, 158, 11, 0.25);
+}
+
+.priority-low {
+  background: rgba(34, 139, 34, 0.2);
+}
+
+.archived-tag {
+  font-style: italic;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px 0;
+  opacity: 0.7;
+}
