@@ -1,4 +1,7 @@
-"""sqlite3 (stdlib) access and schema creation."""
+"""sqlite3 (stdlib) access and schema creation.
+
+Last update by Claude: removed the `priority` column from the todos schema.
+"""
 
 import os
 import sqlite3
@@ -13,8 +16,6 @@ CREATE TABLE IF NOT EXISTS todos (
     due_date TEXT,
     category TEXT NOT NULL DEFAULT 'other'
         CHECK (category IN ('work', 'personal', 'shopping', 'other')),
-    priority TEXT NOT NULL DEFAULT 'medium'
-        CHECK (priority IN ('low', 'medium', 'high')),
     completed INTEGER NOT NULL DEFAULT 0 CHECK (completed IN (0, 1)),
     archived INTEGER NOT NULL DEFAULT 0 CHECK (archived IN (0, 1)),
     created_at TEXT NOT NULL

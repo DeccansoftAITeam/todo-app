@@ -1,3 +1,5 @@
+"""Last update by Claude: removed priority from API tests (now rejected as an unknown field)."""
+
 import logging
 from datetime import datetime
 
@@ -12,7 +14,7 @@ def add(client, **kw):
 def test_create_defaults_and_utc(client):
     t = add(client, title="  Buy milk  ")
     assert t["title"] == "Buy milk"
-    assert t["priority"] == "medium"
+    assert "priority" not in t
     assert t["category"] == "other"
     assert t["completed"] is False and t["archived"] is False
     assert t["due_date"] is None
@@ -25,7 +27,7 @@ def test_create_validation(client):
         {"title": "   "},
         {"title": "x" * 201},
         {},
-        {"title": "a", "priority": "urgent"},
+        {"title": "a", "priority": "high"},
         {"title": "a", "category": "fun"},
         {"title": "a", "due_date": "11/09/2026"},
         {"title": "a", "due_date": "2026-02-30"},
@@ -57,14 +59,13 @@ def test_search_case_insensitive(client):
 
 
 def test_complete_and_undo_keeps_other_fields(client):
-    t = add(client, title="a", due_date="2026-11-01", category="work", priority="high")
+    t = add(client, title="a", due_date="2026-11-01", category="work")
     r = client.patch(f"/api/todos/{t['id']}", json={"completed": True}).json()
     assert r["completed"] is True and r["archived"] is False
-    assert {k: r[k] for k in ("title", "due_date", "category", "priority")} == {
+    assert {k: r[k] for k in ("title", "due_date", "category")} == {
         "title": "a",
         "due_date": "2026-11-01",
         "category": "work",
-        "priority": "high",
     }
     r = client.patch(f"/api/todos/{t['id']}", json={"completed": False}).json()
     assert r["completed"] is False

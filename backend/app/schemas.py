@@ -1,4 +1,7 @@
-"""Request/response models."""
+"""Request/response models.
+
+Last update by Claude: removed the `Priority` type and `priority` fields from the models.
+"""
 
 import re
 from datetime import date
@@ -9,7 +12,6 @@ from pydantic import BaseModel, ConfigDict, StrictBool, field_validator, model_v
 from app import rules
 
 Category = Literal["work", "personal", "shopping", "other"]
-Priority = Literal["low", "medium", "high"]
 
 _DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -20,7 +22,6 @@ class TodoCreate(BaseModel):
     title: str
     due_date: str | None = None
     category: Category = "other"
-    priority: Priority = "medium"
 
     @field_validator("title")
     @classmethod
@@ -57,7 +58,6 @@ class Todo(BaseModel):
     title: str
     due_date: str | None
     category: Category
-    priority: Priority
     completed: bool
     archived: bool
     created_at: str

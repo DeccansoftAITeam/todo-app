@@ -178,18 +178,6 @@ button.primary,
   background: rgba(128, 128, 128, 0.2);
 }
 
-.priority-high {
-  background: rgba(198, 40, 40, 0.2);
-}
-
-.priority-medium {
-  background: rgba(245, 158, 11, 0.25);
-}
-
-.priority-low {
-  background: rgba(34, 139, 34, 0.2);
-}
-
 .archived-tag {
   font-style: italic;
 }

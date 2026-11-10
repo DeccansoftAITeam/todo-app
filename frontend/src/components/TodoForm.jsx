@@ -1,13 +1,11 @@
 import { useState } from 'react'
 
 const CATEGORIES = ['work', 'personal', 'shopping', 'other']
-const PRIORITIES = ['low', 'medium', 'high']
 
 export default function TodoForm({ onCreate }) {
   const [title, setTitle] = useState('')
   const [dueDate, setDueDate] = useState('')
   const [category, setCategory] = useState('other')
-  const [priority, setPriority] = useState('medium')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -29,12 +27,10 @@ export default function TodoForm({ onCreate }) {
         title: trimmed,
         due_date: dueDate || null,
         category,
-        priority,
       })
       setTitle('')
       setDueDate('')
       setCategory('other')
-      setPriority('medium')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -66,16 +62,6 @@ export default function TodoForm({ onCreate }) {
           {CATEGORIES.map((c) => (
             <option key={c} value={c}>
               {c}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="field">
-        <label htmlFor="priority">Priority</label>
-        <select id="priority" value={priority} onChange={(e) => setPriority(e.target.value)}>
-          {PRIORITIES.map((p) => (
-            <option key={p} value={p}>
-              {p}
             </option>
           ))}
         </select>

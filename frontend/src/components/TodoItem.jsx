@@ -19,7 +19,6 @@ export default function TodoItem({ todo, onToggleComplete, onToggleArchive, onDe
           <span className="status">{todo.completed ? 'Completed' : 'Open'}</span>
           {todo.due_date && <span>Due {todo.due_date}</span>}
           <span className="tag">{todo.category}</span>
-          <span className={`tag priority-${todo.priority}`}>{todo.priority}</span>
           {todo.archived && <span className="tag archived-tag">Archived</span>}
         </span>
       </div>

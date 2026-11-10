@@ -1,8 +1,7 @@
 """FastAPI app and routes. The only place that reads the clock."""
 
-# Last update by Claude: added docstrings to every function/route handler in
-# this module (lifespan, get_today, health, create_todo, list_todos,
-# list_overdue, patch_todo, delete_todo). No behavior changes.
+# Last update by Claude: removed `priority` from the create_todo INSERT
+# statement and its parameters. No other changes.
 
 import logging
 import sqlite3
@@ -45,9 +44,9 @@ def create_todo(body: TodoCreate, conn: sqlite3.Connection = Depends(get_conn)):
     """Create a to-do from a validated body and return it with status 201."""
     created_at = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     cur = conn.execute(
-        "INSERT INTO todos (title, due_date, category, priority, created_at) "
-        "VALUES (?, ?, ?, ?, ?)",
-        (body.title, body.due_date, body.category, body.priority, created_at),
+        "INSERT INTO todos (title, due_date, category, created_at) "
+        "VALUES (?, ?, ?, ?)",
+        (body.title, body.due_date, body.category, created_at),
     )
     conn.commit()
     row = conn.execute("SELECT * FROM todos WHERE id = ?", (cur.lastrowid,)).fetchone()

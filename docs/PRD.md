@@ -2,7 +2,7 @@
 
 ## Goal
 
-Give an individual a simple web app to capture, prioritize and track to-dos, with a clear view of what is overdue. The app is the running example for a training course, so v1 stays deliberately small and easy to build and test.
+Give an individual a simple web app to capture and track to-dos, with a clear view of what is overdue. The app is the running example for a training course, so v1 stays deliberately small and easy to build and test.
 
 **Key constraint:** v1 has no persistence. To-dos live in memory only, and refreshing or closing the page clears them.
 
@@ -16,12 +16,11 @@ Individuals and members of small teams who manage their own task list. Each sess
 - Title is required. A blank or whitespace-only title is rejected with a visible message.
 - Due date is optional and is a calendar date only, with no time.
 - Category is one of work, personal, shopping or other. The default is other.
-- Priority is one of low, medium or high. The default is medium.
 - A new to-do starts open and not archived, and it appears in the list immediately.
 
 **2. List my to-dos.** As a user, I want to see my to-dos so I know what's on my plate.
 - By default, the main list shows every to-do that isn't archived, both open and completed.
-- Each item shows its title, completion status, due date (if set), category and priority.
+- Each item shows its title, completion status, due date (if set), and category.
 - When there are no to-dos to show, the list shows an empty-state message.
 
 **3. Mark a to-do complete or incomplete.** As a user, I want to tick off finished work and undo mistakes.
@@ -60,13 +59,13 @@ Individuals and members of small teams who manage their own task list. Each sess
 - Persistence of any kind: local storage, server or database
 - Editing a to-do's fields after creation
 - Deleting to-dos
-- Custom categories or priorities
+- Custom categories
 
 ## Open questions
 
 1. Should search also apply to the Overdue view and to archived to-dos when "Show archived" is on?
-2. What is the default sort order of the main list, for example by due date, by priority or by creation order? What about the Overdue view?
-3. Is filtering by category or priority required, or are those fields display-only in v1?
+2. What is the default sort order of the main list, for example by due date or by creation order? What about the Overdue view?
+3. Is filtering by category required, or is that field display-only in v1?
 4. Is there a maximum title length?
 5. Should completed to-dos stay in the main list, or move to the bottom or into their own section?
 6. Which browsers must be supported?
