@@ -51,6 +51,7 @@ def create_todo(body: TodoCreate, conn: sqlite3.Connection = Depends(get_conn)):
     conn.commit()
     row = conn.execute("SELECT * FROM todos WHERE id = ?", (cur.lastrowid,)).fetchone()
     logger.info("created todo id=%s status=201", cur.lastrowid)
+    logger.info("created todo with title %s", body.title)
     return row_to_todo(row)
 
 
