@@ -6,6 +6,7 @@ export default function TodoList({
   searching,
   onToggleComplete,
   onToggleArchive,
+  onDelete,
 }) {
   if (todos.length === 0) {
     let message = 'No to-dos yet. Add one above.'
@@ -21,6 +22,7 @@ export default function TodoList({
           todo={todo}
           onToggleComplete={onToggleComplete}
           onToggleArchive={onToggleArchive}
+          onDelete={onDelete}
         />
       ))}
     </ul>

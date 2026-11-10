@@ -1,4 +1,4 @@
-export default function TodoItem({ todo, onToggleComplete, onToggleArchive }) {
+export default function TodoItem({ todo, onToggleComplete, onToggleArchive, onDelete }) {
   const classes = ['todo-item']
   if (todo.completed) classes.push('completed')
   if (todo.archived) classes.push('archived')
@@ -25,6 +25,14 @@ export default function TodoItem({ todo, onToggleComplete, onToggleArchive }) {
       </div>
       <button type="button" onClick={() => onToggleArchive(todo)}>
         {todo.archived ? 'Restore' : 'Archive'}
+      </button>
+      <button
+        type="button"
+        className="danger"
+        onClick={() => onDelete(todo)}
+        aria-label={`Delete: ${todo.title}`}
+      >
+        Delete
       </button>
     </li>
   )

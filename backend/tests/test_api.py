@@ -87,10 +87,22 @@ def test_patch_errors(client):
     assert client.patch(f"/api/todos/{t['id']}", json={"completed": "yes"}).status_code == 422
 
 
-def test_no_delete(client):
+def test_delete_removes_todo(client):
+    keep = add(client, title="keep")
+    t = add(client, title="gone")
+    client.patch(f"/api/todos/{t['id']}", json={"archived": True})
+    r = client.delete(f"/api/todos/{t['id']}")
+    assert r.status_code == 204
+    assert r.content == b""
+    ids = [x["id"] for x in client.get("/api/todos", params={"include_archived": True}).json()]
+    assert ids == [keep["id"]]
+
+
+def test_delete_unknown_and_repeat_404(client):
+    assert client.delete("/api/todos/999").status_code == 404
     t = add(client)
-    assert client.delete(f"/api/todos/{t['id']}").status_code == 405
-    assert client.delete("/api/todos/1").status_code == 405
+    assert client.delete(f"/api/todos/{t['id']}").status_code == 204
+    assert client.delete(f"/api/todos/{t['id']}").status_code == 404
 
 
 def test_overdue(client):

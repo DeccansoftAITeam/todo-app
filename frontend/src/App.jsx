@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { createTodo, listOverdue, listTodos, updateTodo } from './api.js'
+import { createTodo, deleteTodo, listOverdue, listTodos, updateTodo } from './api.js'
 import Filters from './components/Filters.jsx'
 import TodoForm from './components/TodoForm.jsx'
 import TodoList from './components/TodoList.jsx'
@@ -49,6 +49,16 @@ export default function App() {
     }
   }
 
+  async function handleDelete(todo) {
+    if (!window.confirm(`Permanently delete "${todo.title}"?`)) return
+    try {
+      await deleteTodo(todo.id)
+      reload()
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
   return (
     <main className="app">
       <h1>To-Do</h1>
@@ -72,6 +82,7 @@ export default function App() {
         searching={query.trim() !== ''}
         onToggleComplete={(t) => mutate(t.id, { completed: !t.completed })}
         onToggleArchive={(t) => mutate(t.id, { archived: !t.archived })}
+        onDelete={handleDelete}
       />
     </main>
   )

@@ -16,6 +16,7 @@ async function request(path, options) {
     }
     throw new Error(message)
   }
+  if (res.status === 204) return null
   return res.json()
 }
 
@@ -38,6 +39,10 @@ export function listOverdue({ q = '' } = {}) {
 
 export function createTodo(todo) {
   return request('/api/todos', { method: 'POST', body: JSON.stringify(todo) })
+}
+
+export function deleteTodo(id) {
+  return request(`/api/todos/${id}`, { method: 'DELETE' })
 }
 
 export function updateTodo(id, changes) {
