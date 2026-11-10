@@ -82,8 +82,26 @@ button.primary,
   margin-bottom: 16px;
 }
 
-.filters input[type='search'] {
+.search-box {
   flex: 1 1 180px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-box input[type='search'] {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .tabs {

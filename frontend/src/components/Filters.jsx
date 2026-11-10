@@ -1,3 +1,5 @@
+import SearchBox from './SearchBox.jsx'
+
 export default function Filters({
   view,
   onViewChange,
@@ -26,13 +28,7 @@ export default function Filters({
           Overdue
         </button>
       </div>
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => onQueryChange(e.target.value)}
-        placeholder="Search titles"
-        aria-label="Search by title"
-      />
+      <SearchBox value={query} onChange={onQueryChange} />
       <label className="archived-toggle">
         <input
           type="checkbox"
