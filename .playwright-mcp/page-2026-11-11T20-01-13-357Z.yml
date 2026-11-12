@@ -1,0 +1,37 @@
+- main [ref=e3]:
+  - heading "To-Do" [level=1] [ref=e4]
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: Title
+      - textbox "Title" [ref=e8]:
+        - /placeholder: What needs doing?
+    - generic [ref=e9]:
+      - generic [ref=e10]: Due date
+      - textbox "Due date" [ref=e11]
+    - generic [ref=e12]:
+      - generic [ref=e13]: Category
+      - combobox "Category" [ref=e14]:
+        - option "work"
+        - option "personal"
+        - option "shopping"
+        - option "other" [selected]
+    - button "Add" [ref=e15] [cursor=pointer]
+  - generic [ref=e16]:
+    - group "View" [ref=e17]:
+      - button "All" [pressed] [ref=e18] [cursor=pointer]
+      - button "Overdue" [ref=e19] [cursor=pointer]
+    - searchbox "Search by title" [ref=e21]
+    - generic [ref=e22]:
+      - checkbox "Show archived" [checked] [active] [ref=e23]
+      - text: Show archived
+  - list [ref=e50]:
+    - listitem [ref=e51]:
+      - 'checkbox "Mark incomplete: Buy groceries" [checked] [ref=e53]'
+      - generic [ref=e54]:
+        - generic [ref=e55]: Buy groceries
+        - generic [ref=e56]:
+          - generic [ref=e57]: Completed
+          - generic [ref=e58]: shopping
+          - generic [ref=e59]: Archived
+      - button "Restore" [ref=e60] [cursor=pointer]
+      - 'button "Delete: Buy groceries" [ref=e61] [cursor=pointer]': Delete

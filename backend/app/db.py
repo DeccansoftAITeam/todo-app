@@ -1,6 +1,7 @@
 """sqlite3 (stdlib) access and schema creation.
 
-Last update by Claude: removed the `priority` column from the todos schema.
+Last update by Claude: fixed sqlite3.ProgrammingError (cross-thread use) by
+opening the per-request connection in get_conn with check_same_thread=False.
 """
 
 import os
@@ -38,7 +39,9 @@ def init_db() -> None:
 
 def get_conn():
     """FastAPI dependency: one connection per request, schema ensured."""
-    conn = sqlite3.connect(db_path())
+    # FastAPI runs the dependency setup, endpoint and teardown in different
+    # threadpool threads; the connection is still used by one request only.
+    conn = sqlite3.connect(db_path(), check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute(SCHEMA)
     try:
