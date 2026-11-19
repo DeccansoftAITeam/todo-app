@@ -7,6 +7,8 @@ export default function Filters({
   onQueryChange,
   showArchived,
   onShowArchivedChange,
+  onExport,
+  exportDisabled,
 }) {
   return (
     <div className="filters">
@@ -38,6 +40,15 @@ export default function Filters({
         />
         Show archived
       </label>
+      <button
+        type="button"
+        className="export-button"
+        onClick={onExport}
+        disabled={exportDisabled}
+        title="Download active to-dos as CSV"
+      >
+        Export CSV
+      </button>
     </div>
   )
 }
