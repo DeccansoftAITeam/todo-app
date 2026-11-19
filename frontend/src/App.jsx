@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createTodo, deleteTodo, listOverdue, listTodos, updateTodo } from './api.js'
+import { downloadTodosCsv } from './csv.js'
 import Filters from './components/Filters.jsx'
 import TodoForm from './components/TodoForm.jsx'
 import TodoList from './components/TodoList.jsx'
@@ -101,6 +102,8 @@ export default function App() {
         onQueryChange={setQuery}
         showArchived={showArchived}
         onShowArchivedChange={setShowArchived}
+        onExport={() => downloadTodosCsv(todos)}
+        exportDisabled={!todos.some((t) => !t.archived)}
       />
       {error && (
         <p className="error" role="alert">
